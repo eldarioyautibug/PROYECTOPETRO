@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Análisis estadístico del transporte de petróleo mediante oleoductos en Ecuador</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<dialog id="aviso">
+  <h2>Importante</h2>
+  <p>Este proyecto tiene un carácter <strong>exclusivamente académico</strong>.</p>
+  <button type="button" class="btn" id="aviso-ok">Entendido</button>
+</dialog>
+
+<dialog id="fuentes">
+  <h2>Fuentes de datos</h2>
+  <ul>
+    <li><a href="https://www.eppetroecuador.ec/wp-content/uploads/downloads/2026/01/INFORME-ESTADISTICO-MENSUAL-DICIEMBRE-2025-1.pdf" target="_blank" rel="noopener">EP Petroecuador: informe estadístico mensual, diciembre 2025</a></li>
+    <li><a href="https://contenido.bce.fin.ec/documentos/Estadisticas/Hidrocarburos/ASP202504.pdf" target="_blank" rel="noopener">Banco Central del Ecuador: estadísticas de hidrocarburos</a></li>
+    <li><a href="https://www.ocpecuador.com/servicios/transporte-de-crudo-pesado/" target="_blank" rel="noopener">OCP Ecuador: transporte de crudo pesado</a></li>
+    <li><a href="https://www.ocpecuador.com/" target="_blank" rel="noopener">OCP Ecuador: sitio oficial</a></li>
+  </ul>
+  <button type="button" class="btn" id="fuentes-ok">Cerrar</button>
+</dialog>
+
+<button class="burger" id="burger" aria-expanded="false" aria-controls="side">Menú</button>
+
+<aside class="side" id="side">
+  <a class="brand" href="#inicio">
+    <img src="img/logofigempa.avif" alt="Logo FIGEMPA" onerror="this.remove()">
+    <strong>Proyecto Estadístico</strong>
+    <small>Transporte de crudo por oleoductos en Ecuador</small>
+  </a>
+  <nav aria-label="Principal">
+    <ul>
+      <li><a href="#inicio" data-route="inicio">Inicio</a></li>
+      <li><a href="#introduccion" data-route="introduccion">Introducción</a></li>
+      <li><a href="#mapa" data-route="mapa">Mapa Web</a></li>
+      <li><a href="#descriptiva" data-route="descriptiva">Descriptiva</a></li>
+      <li><a href="#inferencial" data-route="inferencial">Inferencial</a></li>
+      <li><a href="#regresion" data-route="regresion">Regresión</a></li>
+      <li><a href="#ml" data-route="ml">Machine Learning</a></li>
+      <li class="more">
+        <button type="button" id="more-btn" aria-expanded="false" aria-controls="more-list">Más</button>
+        <ul id="more-list" hidden>
+          <li><a href="#nosotros" data-route="nosotros">Nosotros</a></li>
+          <li><a href="#herramientas" data-route="herramientas">Herramientas Usadas</a></li>
+          <li><a href="#conclusiones" data-route="conclusiones">Conclusiones</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>
+
+<main>
+
+<!-- INICIO -->
+<section class="view" id="inicio">
+  <header class="hero" id="hero">
+    <div class="bg" id="bg"></div>
+    <div class="glow"></div>
+    <div class="hero-in">
+      <span class="badge"><i></i>Proyecto académico FIGEMPA – UCE</span>
+      <h1 id="titulo">Análisis estadístico del transporte de petróleo mediante oleoductos en Ecuador</h1>
+      <p class="deck">Del Oriente al Pacífico: volumen, presión y eficiencia del crudo que cruza los Andes.</p>
+      <div class="ctas">
+        <button type="button" class="btn" data-go="ruta">Ver ruta del crudo</button>
+        <a class="btn ghost" href="#introduccion">Ir a la introducción</a>
+      </div>
+    </div>
+    <span class="scroll" aria-hidden="true"></span>
+  </header>
+
+  <section class="ruta" id="ruta">
+    <div class="ruta-in">
+      <div class="rv">
+        <h2>La ruta del crudo, de Lago Agrio a Esmeraldas</h2>
+        <p class="lead">Dos oleoductos cruzan la cordillera. Elige uno, toca una estación o recorre el trazado con el control inferior. Los trazados y las altitudes son esquemáticos.</p>
+      </div>
+      <div class="ruta-grid">
+        <div class="mapa" id="mapa-box"></div>
+        <div class="panel rv">
+          <div class="modos" role="group" aria-label="Oleoducto">
+            <button type="button" data-modo="todos" aria-pressed="true">Ambos</button>
+            <button type="button" data-modo="sote" aria-pressed="false">SOTE</button>
+            <button type="button" data-modo="ocp" aria-pressed="false">OCP</button>
+          </div>
+          <h3 id="p-tit">Dos rutas, un mismo destino</h3>
+          <p class="sub" id="p-sub">SOTE y OCP</p>
+          <p id="p-txt">Ambos llevan el crudo del Oriente amazónico hasta la costa de Esmeraldas.</p>
+          <div class="rec">
+            <label for="rec">Recorrido esquemático del SOTE</label>
+            <input type="range" id="rec" min="0" max="1000" value="0">
+            <div class="lect"><output id="alt">≈ 300 m</output><span id="lugar">Lago Agrio</span></div>
+            <svg id="perfil" viewBox="0 0 400 120" role="img" aria-label="Perfil de altitud esquemático del SOTE"></svg>
+            
+            <button type="button" class="btn ghost" id="play">Reproducir recorrido</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mvband">
+    <div class="mv">
+      <article class="tilt rv" style="--d:0ms">
+        <h2>Misión</h2>
+        <p>Evaluar con herramientas estadísticas y computacionales el transporte de petróleo por oleoductos en Ecuador, analizando el volumen transportado, las condiciones de operación y la eficiencia, para aportar conocimiento académico al sector hidrocarburífero.</p>
+      </article>
+      <article class="tilt rv" style="--d:150ms">
+        <h2>Visión</h2>
+        <p>Ser una referencia académica en el análisis de datos del transporte de crudo en el país, integrando visualización y aprendizaje automático para entender cómo opera la red de oleoductos y dónde puede mejorar.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="motiv" id="motivacion">
+    <h2 class="centro rv">Motivación del proyecto</h2>
+    <div class="motiv-grid">
+      <figure class="foto rv">
+        <img src="img/universidad.jpg" alt="Facultad de Ingeniería en Geología, Minas, Petróleos y Ambiental de la Universidad Central del Ecuador" loading="lazy">
+        <figcaption><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>FIGEMPA</figcaption>
+      </figure>
+      <div class="motiv-txt rv" style="--d:150ms">
+        <p class="eyebrow">Universidad Central del Ecuador</p>
+        <h3>¿Por qué este proyecto?</h3>
+        <p>Como estudiantes de la Universidad Central del Ecuador, desarrollamos este proyecto con el propósito de aplicar la <strong>estadística como herramienta fundamental</strong> en el análisis de datos del mundo real, en este caso el transporte de crudo por oleoductos en nuestro país.</p>
+        <p>Nuestro objetivo no es solo interpretar la información, sino también destacar la relevancia de la estadística en la <em>toma de decisiones informadas</em> dentro del ámbito profesional relacionado con nuestra carrera en geología, minas, petróleos y ambiental.</p>
+        <a class="btn" href="https://www.uce.edu.ec/" target="_blank" rel="noopener">Universidad Central del Ecuador</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- INTRODUCCIÓN -->
+<section class="view intro" id="introduccion" hidden>
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="intro-in">
+    <h2 class="titulo rv">Introducción</h2>
+
+    <article class="glass rv">
+      <h3>Planteamiento del problema</h3>
+      <p>El análisis estadístico del transporte de petróleo en Ecuador permite evaluar el volumen transportado, las condiciones de operación y la eficiencia de los oleoductos SOTE y OCP. Sin embargo, la información publicada por EP Petroecuador, el Banco Central del Ecuador y OCP Ecuador se encuentra dispersa, lo que dificulta su comparación. Por ello, se analizarán variables como caudal, presión, temperatura, distancia, consumo energético y pérdidas estimadas para comprender el comportamiento del transporte de crudo.</p>
+      <button type="button" class="btn" id="ver-fuentes">Ver fuentes de datos</button>
+    </article>
+
+    <div class="borde rv">
+      <article class="general">
+        <h3>Objetivo general</h3>
+        <p>Aplicar herramientas estadísticas y de Machine Learning para evaluar el transporte de petróleo mediante oleoductos en Ecuador, a partir de datos de volumen, operación y eficiencia, mediante herramientas computacionales.</p>
+      </article>
+    </div>
+
+    <article class="esp">
+      <h3 class="rv">Objetivos específicos</h3>
+      <ol>
+        <li class="rv" style="--d:0ms">Conocer la situación actual del transporte de crudo por oleoductos en Ecuador, a través de sus características más importantes y medidas estadísticas.</li>
+        <li class="rv" style="--d:120ms">Emplear un modelo de probabilidad para establecer conclusiones sobre el volumen transportado y las condiciones de operación a partir de los resultados de la muestra.</li>
+        <li class="rv" style="--d:240ms">Deducir relaciones entre las variables del transporte por oleoducto, como caudal, presión, temperatura, consumo energético y pérdidas, con el fin de realizar estimaciones.</li>
+      </ol>
+    </article>
+  </div>
+</section>
+
+<!-- EN CONSTRUCCIÓN -->
+<section class="view obra" id="construccion" hidden>
+  <div class="obra-in">
+    <div class="franja" aria-hidden="true"></div>
+    <h2 class="titulo">En construcción</h2>
+    <p>La sección «<span id="c-nombre"></span>» se publicará cuando avance el análisis.</p>
+    <a class="btn" href="#inicio">Volver al inicio</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Autor: Elkin Yautibug | FIGEMPA - UCE</p>
+  <p>Quito, Ecuador</p>
+</footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
