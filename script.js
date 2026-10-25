@@ -3,7 +3,6 @@
   const $$ = s => [...document.querySelectorAll(s)];
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------- Navegación ---------- */
   const ICONS = {
     inicio: 'M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10',
     introduccion: 'M4 5h6a2 2 0 012 2v12a2 2 0 00-2-2H4zM20 5h-6a2 2 0 00-2 2v12a2 2 0 012-2h6z',
@@ -15,7 +14,7 @@
     mas: 'M5 12h.01M12 12h.01M19 12h.01'
   };
   const links = $$('[data-route]');
-  const views = { inicio: 1, introduccion: 1 };
+  const views = { inicio: 1, introduccion: 1, descriptiva: 1 };
   const side = $('#side'), burger = $('#burger');
   const moreBtn = $('#more-btn'), moreList = $('#more-list');
   const icon = p => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${p}"/></svg>`;
@@ -47,14 +46,12 @@
   $$('[data-go]').forEach(b => b.addEventListener('click', () =>
     document.getElementById(b.dataset.go).scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' })));
 
-  /* ---------- Diálogos ---------- */
   const aviso = $('#aviso'), fuentes = $('#fuentes');
   try { if (!sessionStorage.getItem('aviso') && aviso.showModal) aviso.showModal(); } catch (e) {}
   $('#aviso-ok').addEventListener('click', () => { aviso.close(); try { sessionStorage.setItem('aviso', '1'); } catch (e) {} });
   $('#ver-fuentes').addEventListener('click', () => fuentes.showModal());
   $('#fuentes-ok').addEventListener('click', () => fuentes.close());
 
-  /* ---------- Revelado al hacer scroll + progreso ---------- */
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
     e.target.classList.add('on');
@@ -68,7 +65,6 @@
     prog.style.transform = `scaleX(${h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)})`;
   }, { passive: true });
 
-  /* ---------- Hero: título por palabras, paralaje y luz ---------- */
   const h1 = $('#titulo');
   h1.setAttribute('aria-label', h1.textContent);
   h1.innerHTML = h1.textContent.split(' ').map((w, i) =>
@@ -81,7 +77,7 @@
     if (!reduce) bg.style.transform = `translate(${-((e.clientX - r.left) / r.width - .5) * 36}px,${-((e.clientY - r.top) / r.height - .5) * 24}px)`;
   });
 
-  /* ---------- Inclinación 3D de Misión y Visión ---------- */
+
   $$('.tilt').forEach(c => {
     c.addEventListener('pointermove', e => {
       if (reduce) return;
@@ -92,7 +88,6 @@
     c.addEventListener('pointerleave', () => (c.style.transform = ''));
   });
 
-  /* ---------- Fondo: red de partículas ---------- */
   const cv = $('#fx'), c2 = cv.getContext('2d');
   const dpr = Math.min(devicePixelRatio || 1, 2);
   let CW, CH, dots = [], mx = -999, my = -999;
@@ -273,7 +268,6 @@
     e.addEventListener('keydown', k => { if (k.key === 'Enter' || k.key === ' ') { k.preventDefault(); estacion(+e.dataset.i); } });
   });
 
-  /* Gotas de crudo que recorren cada oleoducto */
   const gotas = $$('.gota');
   const moverGotas = now => gotas.forEach(g => {
     const q = posAt(PIPES[g.dataset.p], ((now / 11000) + +g.dataset.o) % 1);
@@ -282,7 +276,6 @@
   if (reduce) moverGotas(0);
   else { const bucle = now => { moverGotas(now); requestAnimationFrame(bucle); }; requestAnimationFrame(bucle); }
 
-  /* Recorrido esquemático del SOTE + perfil de altitud sincronizado */
   const S = PIPES.sote;
   const rec = $('#rec'), marca = $('#marca'), alt = $('#alt'), lugar = $('#lugar');
   const pf = $('#perfil'), PB = 100;

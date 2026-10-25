@@ -9,7 +9,6 @@ a{color:var(--c4)}
 .prog{position:fixed;top:0;left:0;right:0;height:3px;background:var(--c4);transform:scaleX(0);transform-origin:left;z-index:60}
 main{margin-left:var(--side)}
 
-/* Barra lateral */
 .side{position:fixed;inset:0 auto 0 0;width:var(--side);background:var(--c0);border-right:1px solid var(--c2);padding:1.5rem 1rem;display:flex;flex-direction:column;gap:1.5rem;overflow-y:auto;z-index:50;transition:transform .35s ease}
 .brand{display:block;text-decoration:none;color:var(--c5);padding:0 .5rem 1.25rem;border-bottom:1px solid var(--c2)}
 .brand img{display:block;height:42px;width:auto}
@@ -25,13 +24,11 @@ nav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stro
 .more>button.on{background:var(--c2)}
 .burger{display:none;position:fixed;top:.75rem;left:.75rem;z-index:55;background:var(--c0);color:var(--c5);border:1px solid var(--c4);border-radius:999px;padding:.5rem 1rem;font:600 .9rem "DM Sans";cursor:pointer}
 
-/* Botones */
 .btn{display:inline-block;border:2px solid var(--c5);background:var(--c5);color:var(--c0);padding:.85rem 1.6rem;border-radius:999px;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s,color .25s}
 .btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(142,182,155,.45)}
 .btn.ghost{background:transparent;color:var(--c5);border-color:var(--c4)}
 .btn.ghost:hover{background:var(--c5);color:var(--c0)}
 
-/* Hero */
 .hero{position:relative;min-height:100vh;display:grid;place-items:center;text-align:center;overflow:hidden;isolation:isolate}
 .bg{position:absolute;inset:-6%;background:url(img/fondo.webp) center/cover;z-index:-3;animation:kb 26s ease-in-out infinite alternate;transition:transform .4s ease-out}
 .hero::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(5,31,32,.45),rgba(5,31,32,.62) 55%,var(--c0))}
@@ -47,7 +44,6 @@ h1{margin:1.5rem auto 0;font-weight:800;font-size:clamp(2.3rem,5.4vw,4.7rem);lin
 .scroll{position:absolute;bottom:1.75rem;left:50%;width:26px;height:42px;margin-left:-13px;border:2px solid var(--c4);border-radius:14px}
 .scroll::after{content:"";position:absolute;left:50%;top:7px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:var(--c5);animation:wheel 1.8s ease-in-out infinite}
 
-/* Ruta del crudo */
 .ruta{background:var(--c1);padding:clamp(3.5rem,8vw,6rem) clamp(1rem,4vw,3rem)}
 .ruta-in{max-width:1180px;margin-inline:auto}
 .ruta h2,.titulo{font-weight:800;font-size:clamp(1.9rem,4vw,3rem);line-height:1.1;letter-spacing:-.02em;max-width:22ch}
@@ -98,7 +94,6 @@ output{font:800 2.2rem/1 "Bricolage Grotesque";color:var(--c5)}
 .barra{height:8px;border-radius:8px;background:var(--c0);margin:.9rem 0 1.25rem;overflow:hidden}
 .barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c3),var(--c5));border-radius:8px}
 
-/* Misión y visión */
 .mvband{background:var(--c5);color:var(--c0);padding:clamp(3.5rem,8vw,6rem) clamp(1rem,4vw,3rem)}
 .mv{max-width:1180px;margin-inline:auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,3vw,2rem);perspective:1000px}
 .tilt{background:var(--c0);color:var(--c5);border-radius:28px;padding:clamp(1.5rem,3vw,2.5rem);transform-style:preserve-3d;transition:transform .25s ease-out,box-shadow .3s;box-shadow:0 20px 50px rgba(5,31,32,.25)}
@@ -106,7 +101,6 @@ output{font:800 2.2rem/1 "Bricolage Grotesque";color:var(--c5)}
 .tilt h2{font-size:2.2rem;font-weight:800;margin-bottom:.75rem}
 .tilt p{max-width:44ch}
 
-/* Introducción */
 .intro{position:relative;overflow:hidden;min-height:100vh;background:linear-gradient(180deg,var(--c0),var(--c1))}
 .orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.35;pointer-events:none}
 .o1{width:420px;height:420px;background:var(--c3);top:-80px;right:-60px;animation:float 14s ease-in-out infinite alternate}
@@ -124,7 +118,6 @@ output{font:800 2.2rem/1 "Bricolage Grotesque";color:var(--c5)}
 .esp li:hover{transform:translateX(10px);background:var(--c2);border-color:var(--c4)}
 .esp li::before{content:counter(o);position:absolute;left:1.25rem;top:50%;translate:0 -50%;width:2.8rem;height:2.8rem;display:grid;place-items:center;border-radius:50%;background:var(--c5);color:var(--c0);font:800 1.3rem "Bricolage Grotesque"}
 
-/* En construcción */
 .obra{min-height:100vh;display:grid;align-items:center;background:var(--c1)}
 .obra-in{max-width:760px;margin-inline:auto;padding:3rem clamp(1rem,4vw,2rem)}
 .obra .titulo{margin:1.5rem 0 1rem}
@@ -139,7 +132,6 @@ dialog h2{margin-bottom:.75rem}
 dialog ul{padding-left:1.1rem;margin-bottom:1.25rem}
 dialog li+li{margin-top:.5rem}
 
-/* Revelado al hacer scroll */
 .rv{opacity:0;transform:translateY(32px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0ms)}
 .rv.on{opacity:1;transform:none}
 
@@ -176,7 +168,6 @@ dialog li+li{margin-top:.5rem}
   .flujo,.est{opacity:1}
 }
 
-/* ===== Versión 3: fondo oscuro con efectos, mapa con más diseño, motivación ===== */
 :root{--bg:#031314}
 body{background:var(--bg)}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(142,182,155,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(142,182,155,.06) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 35%,#000 15%,transparent 75%);mask-image:radial-gradient(ellipse at 50% 35%,#000 15%,transparent 75%)}
@@ -201,7 +192,6 @@ h2.centro{text-align:center;font-weight:800;font-size:clamp(1.9rem,4vw,3rem);let
 h2.centro::after{content:"";display:block;width:0;height:3px;margin:1rem auto 0;border-radius:3px;background:linear-gradient(90deg,var(--c3),var(--c5));transition:width 1s ease .4s}
 h2.centro.on::after{width:150px}
 
-/* Motivación */
 .motiv{padding:clamp(3.5rem,8vw,6rem) clamp(1rem,4vw,3rem)}
 .motiv-grid{max-width:1180px;margin:3rem auto 0;display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(1.5rem,4vw,4rem);align-items:center}
 .foto{position:relative;aspect-ratio:16/10;border-radius:28px;overflow:hidden;border:1px solid var(--c3);box-shadow:0 0 70px rgba(35,83,71,.5),0 30px 60px rgba(0,0,0,.5)}
@@ -219,7 +209,6 @@ h2.centro.on::after{width:150px}
 .motiv-txt em{color:#fff;font-weight:700}
 .motiv-txt .btn{margin-top:1.75rem}
 
-/* Mapa */
 .mapa{position:relative;overflow:hidden;padding:2.6rem 1rem 3.2rem;border-radius:30px;border:1px solid var(--c3);background:radial-gradient(circle at 50% 38%,rgba(35,83,71,.45),rgba(3,19,20,.93) 72%);box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 1px rgba(142,182,155,.08),inset 0 0 70px rgba(35,83,71,.28)}
 .mapa::before{content:"";position:absolute;inset:10px;border-radius:22px;pointer-events:none;z-index:2;opacity:.7;background:linear-gradient(var(--c4),var(--c4)) left top/22px 2px,linear-gradient(var(--c4),var(--c4)) left top/2px 22px,linear-gradient(var(--c4),var(--c4)) right top/22px 2px,linear-gradient(var(--c4),var(--c4)) right top/2px 22px,linear-gradient(var(--c4),var(--c4)) left bottom/22px 2px,linear-gradient(var(--c4),var(--c4)) left bottom/2px 22px,linear-gradient(var(--c4),var(--c4)) right bottom/22px 2px,linear-gradient(var(--c4),var(--c4)) right bottom/2px 22px;background-repeat:no-repeat}
 .barrido{position:absolute;left:0;right:0;top:0;height:16%;pointer-events:none;z-index:1;background:linear-gradient(180deg,transparent,rgba(218,241,222,.1),transparent);animation:scan 7s linear infinite}
@@ -266,7 +255,6 @@ h2.centro.on::after{width:150px}
   .barrido{display:none}
 }
 
-/* ===== Versión 4: aún más oscuro + mapa ===== */
 :root{--bg:#020c0d}
 .aurora i:nth-child(1){opacity:.2}
 .aurora i:nth-child(2){opacity:.08}
@@ -284,3 +272,32 @@ footer{background:rgba(2,12,13,.92)}
 .ciu circle{fill:var(--c4);opacity:.8}
 .mapa .ciu text{font-size:10.5px;fill:var(--c4);opacity:.75}
 .mapa svg{-webkit-mask-image:radial-gradient(ellipse 78% 72% at 50% 50%,#000 72%,transparent 100%);mask-image:radial-gradient(ellipse 78% 72% at 50% 50%,#000 72%,transparent 100%)}
+
+.desc-in{max-width:1180px;margin-inline:auto;padding:clamp(3rem,7vw,5rem) clamp(1rem,4vw,3rem) 5rem}
+.num{font:800 clamp(2.2rem,5vw,3.4rem)/1 "Bricolage Grotesque",sans-serif;color:transparent;-webkit-text-stroke:1.5px var(--c4)}
+.desc header .titulo{margin:0;max-width:none}
+.desc .cc-grid{margin-top:2rem}
+.sim.pie{margin-top:2rem}
+.desc .lead{max-width:60ch}
+.sim{margin-top:1.5rem;max-width:62ch;padding:.85rem 1.1rem;border-left:4px solid var(--c5);background:rgba(142,182,155,.1);border-radius:0 14px 14px 0;font-size:.95rem}
+.et{display:block;font:700 .78rem "DM Sans",sans-serif;letter-spacing:.04em;color:var(--c4);margin-bottom:.4rem}
+i{font-family:"Cambria Math","STIX Two Math",Georgia,serif}
+.cc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem;perspective:1100px;margin-top:2.5rem}
+.cc{position:relative;display:flex;flex-direction:column;padding:1.75rem;border-radius:26px;background:linear-gradient(160deg,rgba(22,56,50,.85),rgba(5,31,32,.9));border:1px solid var(--c3);transform-style:preserve-3d;transition:transform .25s ease-out,border-color .3s,box-shadow .3s,opacity .8s ease,translate .8s ease}
+.cc:hover{border-color:var(--c5);box-shadow:0 0 50px rgba(142,182,155,.22)}
+.ico{display:grid;place-items:center;width:62px;height:62px;border-radius:18px;background:var(--c3);color:var(--c5);margin-bottom:1.25rem;animation:flota 5s ease-in-out infinite}
+.ico svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@keyframes flota{50%{transform:translateY(-5px)}}
+.tag{position:absolute;top:1.75rem;right:1.75rem;padding:.2rem .75rem;border:1px solid var(--c4);border-radius:999px;font:700 .8rem "DM Sans",sans-serif;color:var(--c4)}
+.cc h3{font:800 1.5rem/1.2 "Bricolage Grotesque",sans-serif;margin-bottom:.6rem}
+.cc>p,.caso>div>p{margin-bottom:1.25rem}
+.plato{margin-top:auto;padding:1.1rem 1.25rem;border-radius:16px;background:var(--c5);color:#031314;text-align:center}
+.plato .et{color:#235347}
+.mat{font:italic 1.1rem/1.65 "Cambria Math","STIX Two Math",Georgia,serif;overflow-wrap:anywhere}
+.mat sub,.nota sub{font-size:.7em;line-height:0}
+.o{font:700 .95rem "Bricolage Grotesque",sans-serif;font-style:italic;color:#235347;margin:.1rem 0}
+.nota{font-size:.88rem;color:#235347;margin-top:.3rem}
+.caso{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:2rem;align-items:center}
+.caso .plato{margin-top:0}
+@media (max-width:980px){.cc-grid,.caso{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.ico{animation:none}}
