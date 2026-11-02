@@ -301,3 +301,32 @@ i{font-family:"Cambria Math","STIX Two Math",Georgia,serif}
 .caso .plato{margin-top:0}
 @media (max-width:980px){.cc-grid,.caso{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.ico{animation:none}}
+
+.tv-wrap{margin-top:clamp(3rem,7vw,5rem)}
+.tv-wrap h3{font:800 clamp(1.6rem,3.2vw,2.3rem)/1.1 "Bricolage Grotesque",sans-serif}
+.tv-sub{margin-top:.5rem;color:var(--c4);max-width:62ch}
+.tv-tools{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;margin:1.5rem 0 1rem}
+.tv-tools input{flex:1 1 14rem;max-width:22rem;padding:.65rem 1.1rem;border-radius:999px;border:1px solid var(--c3);background:var(--c0);color:var(--c5);font:500 .95rem "DM Sans",sans-serif}
+.tv-tools input::placeholder{color:var(--c4)}
+.seg{display:inline-flex;gap:.25rem;padding:.3rem;border-radius:999px;background:var(--c0);border:1px solid var(--c2)}
+.seg button{border:0;border-radius:999px;padding:.4rem 1rem;background:none;color:var(--c5);font:600 .88rem "DM Sans",sans-serif;cursor:pointer;transition:background .25s,color .25s}
+.seg button[aria-pressed="true"]{background:var(--c5);color:var(--c0)}
+.tv-tools output{margin-left:auto;font:600 .9rem "DM Sans",sans-serif;color:var(--c4)}
+.tv-scroll{max-height:72vh;overflow:auto;border:1px solid var(--c3);border-radius:22px;background:rgba(2,12,13,.7);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.tv-scroll:focus-visible{outline-offset:-3px}
+.tv{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:.9rem;line-height:1.5}
+.tv th,.tv td{padding:.75rem .9rem;text-align:left;vertical-align:middle;border-bottom:1px solid var(--c2);border-right:1px solid var(--c2)}
+.tv thead th{position:sticky;top:0;z-index:3;background:var(--c3);color:var(--c5);font:700 .78rem "DM Sans",sans-serif;text-align:center;letter-spacing:.02em;border-bottom:2px solid var(--c4)}
+.tv tbody th.c0,.tv thead th:first-child{position:sticky;left:0;z-index:2;background:var(--c1);color:var(--c5);font-weight:700;box-shadow:2px 0 0 var(--c3)}
+.tv thead th:first-child{z-index:4;background:var(--c3)}
+.tv tbody tr{background:rgba(11,43,38,.55);transition:background .2s}
+.tv tbody tr:nth-child(even){background:rgba(22,56,50,.55)}
+.tv tbody tr:hover{background:rgba(35,83,71,.7)}
+.tv .ctr{text-align:center}
+.tv .mat{font-family:"Cambria Math","STIX Two Math",Georgia,serif;font-size:.95rem}
+.chip{display:inline-block;padding:.15rem .7rem;border-radius:999px;font:700 .75rem "DM Sans",sans-serif;border:1px solid var(--c4);white-space:nowrap}
+.chip.cual{background:rgba(142,182,155,.15);color:var(--c4)}
+.chip.cuan{background:var(--c5);color:var(--c0);border-color:var(--c5)}
+.chip.si{background:var(--c3);color:var(--c5)}
+.chip.no{color:var(--c4);border-style:dashed}
+.tv-vacio{padding:1.5rem;text-align:center;color:var(--c4)}

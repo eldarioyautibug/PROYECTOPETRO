@@ -77,8 +77,7 @@
     if (!reduce) bg.style.transform = `translate(${-((e.clientX - r.left) / r.width - .5) * 36}px,${-((e.clientY - r.top) / r.height - .5) * 24}px)`;
   });
 
-
-  $$('.tilt').forEach(c => {
+  $$('.tilt, .cc').forEach(c => {
     c.addEventListener('pointermove', e => {
       if (reduce) return;
       const r = c.getBoundingClientRect();
@@ -120,13 +119,11 @@
   addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
   document.addEventListener('visibilitychange', () => { if (!document.hidden && !reduce) frame(); });
 
-  /* ---------- Mapa interactivo de Ecuador ---------- */
   const K = 110, LON0 = -81.2, LAT0 = 1.7;
   const P = ([lo, la]) => [(lo - LON0) * K, (LAT0 - la) * K];
   const D = a => a.map((q, i) => (i ? 'L' : 'M') + q[0].toFixed(1) + ',' + q[1].toFixed(1)).join('');
   const ZP = a => D(a.map(P)) + 'Z';
 
-  // Contorno, zonas y trazados esquemáticos [lon, lat]. Reemplazar por datos reales (GeoJSON) cuando se tengan.
   const paisLL = [[-78.87,1.45],[-78.4,1.2],[-77.9,.85],[-77.5,.55],[-77,.35],[-76.2,.2],[-75.3,-.1],[-75.3,-.9],[-75.6,-1.6],[-76.4,-2.5],[-77.6,-3],[-78.2,-3.4],[-78.4,-4.1],[-78.7,-4.5],[-79,-4.95],[-79.5,-4.6],[-80.2,-4.4],[-80.45,-4.2],[-80.3,-3.55],[-79.95,-3.3],[-79.85,-2.5],[-80.3,-2.7],[-80.9,-2.2],[-80.85,-1.7],[-80.75,-1],[-80.5,-.4],[-80.05,.05],[-80.05,.55],[-79.8,.95],[-79.2,1.1]];
   const WE = [[-78.9,1.6],[-79,0],[-79.45,-1.5],[-79.6,-3],[-79.8,-5.2]];
   const EE = [[-77.7,1.6],[-77.7,0],[-78,-1.5],[-78.4,-3],[-78.6,-5.2]];
@@ -318,4 +315,28 @@
   });
 
   route();
+})();
+
+(() => {
+  const q = document.getElementById('tv-q'); if (!q) return;
+  const filas = [...document.querySelectorAll('.tv tbody tr')];
+  const btns = [...document.querySelectorAll('[data-tv]')];
+  const out = document.getElementById('tv-n'), vacio = document.getElementById('tv-vacio');
+  let tipo = 'todas';
+  const norm = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const textos = filas.map(f => norm(f.textContent));
+  function filtrar() {
+    const t = norm(q.value.trim());
+    let n = 0;
+    filas.forEach((f, i) => {
+      const ok = (tipo === 'todas' || f.dataset.t === tipo) && (!t || textos[i].includes(t));
+      f.hidden = !ok; if (ok) n++;
+    });
+    out.textContent = n + (n === 1 ? ' variable' : ' variables');
+    vacio.hidden = n > 0;
+  }
+  q.addEventListener('input', filtrar);
+  btns.forEach(b => b.addEventListener('click', () => {
+    tipo = b.dataset.tv; btns.forEach(x => x.setAttribute('aria-pressed', x === b)); filtrar();
+  }));
 })();
